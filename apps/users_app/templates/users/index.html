@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+            <div class="nav-wrapper row">
+                <a href="#" class="brand-logo center-align col s12 m12 l12">Welcome Admin!</a>
+            </div>
+        </nav>
+
+        <br>
+        
+        <table class="response-table centered highlight edit">
+            <thead class="edit">
+                <tr class="edit">
+                    <th class="edit">id</th>
+                    <th class="edit">Full Name</th>
+                    <th class="edit">Email</th>
+                    <th class="edit">Created At</th>
+                    <th class="edit">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="edit">
+                {% for user in users%}
+                    <tr class="edit">
+                        <td class="edit">{{ user.id }}</td>
+                        <td class="edit">{{ user.name }}</td>
+                        <td class="edit">{{ user.email }}</td>
+                        <td class="edit">{{ user.created_at }}</td>
+                        <td class="edit">
+                            <a href="/display/{{ user.id }}"><button class="btn waves-effect waves-light">Show</button></a>
+                            <a href="/edit/{{ user.id }}"><button class="btn waves-effect waves-light">Edit</button></a>
+                            <a href="/delete/{{ user.id }}"><button class="btn waves-effect waves-light"><i class="small material-icons ">delete</i></button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/new" class="left"><button class="btn waves-effect waves-light">Add a new user</button></a>
+    </div>
+</body>
+</html>
